@@ -64,54 +64,6 @@ pipeline {
 
 
 
-## git hub actions
-
-Here is an example of a CI/CD process for a Node.js backend application using GitHub Actions:
-
-SCM trigger: First, you need to set up your source code management (SCM) system, such as Git, and configure GitHub Actions to watch for changes in the repository. You can do this by creating a workflow file in the .github/workflows directory of your project and specifying the repository URL and branch.
-
-Build: Next, you can set up a build step in your workflow file to compile your code and run any necessary tests or linters. This can be done using a build tool like Grunt or Gulp, or with a simple shell script.
-
-Test: After the build step, you can add a step to run your test suite. This can be done using a testing framework like Mocha or Jest.
-
-Code quality: You can also add a step to check the code quality of your application using a tool like ESLint or JSHint.
-
-Server instantiation: If your application requires a server to be running, you can set up a step to start the server before running the tests.
-
-Containerized deployment: Once the tests have passed, you can set up a step to build a Docker container image of your application and push it to a container registry like Docker Hub.
-
-Scalability: Finally, you can set up a step to deploy the containerized version of your application to a container orchestration platform like Kubernetes, which will allow you to scale the application as needed.
-
-Here is an example workflow file that defines these steps:
-
-```
-name: CI/CD
-
-on: [push]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Test
-        run: npm test
-      - name: Code Quality
-        run: npm run lint
-      - name: Server Instantiation
-        run: npm start &
-      - name: Containerized Deployment
-        run: |
-          docker build -t my-app .
-          docker push my-app
-      - name: Scalability
-        run: kubectl apply -f my-app-deployment.yml
-```
 
 
 
